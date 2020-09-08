@@ -6,7 +6,7 @@ shinyServer(
     observeEvent(input$useBuiltIns, {
       shinyjs::toggle(id = "noDataSet")
       
-      if (input$useBuiltIns == TRUE) {
+      if (input$useBuiltIns) {
         shinyjs::hide(id = "uploadFile")
         shinyjs::hide(id = "uploader")
       } else {
@@ -20,7 +20,7 @@ shinyServer(
         return()
       }
       if (input$useBuiltIns) {
-        output$fileSummary <- renderUI(summarizeDF( get(input$selectBuiltIns)))
+        output$fileSummary <- renderUI(summarizeDF( get(input$selectBuiltIns), input, output))
       } else {
         
       }
